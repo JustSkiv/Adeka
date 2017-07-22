@@ -1,5 +1,7 @@
 <?php
+
 namespace vendor\core;
+
 use vendor\libs\helpers\UrlHelper;
 
 
@@ -81,7 +83,7 @@ class Router
     public static function dispatch($url)
     {
         if (self::matchRoute($url)) {
-            $controller = UrlHelper::dashesToCamelCase(self::$route['controller']);
+            $controller = 'app\controllers\\' . UrlHelper::dashesToCamelCase(self::$route['controller']);
 
             if (class_exists($controller)) {
                 $controllerObject = new $controller;

@@ -1,5 +1,5 @@
 <?php
-
+namespace app\controllers;
 /**
  * Created by Nikolay Tuzov
  */
