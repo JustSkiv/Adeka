@@ -1,5 +1,6 @@
 <?php
 
+namespace vendor\libs\helpers;
 /**
  * Created by Nikolay Tuzov
  *

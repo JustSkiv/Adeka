@@ -19,7 +19,7 @@ require '../vendor/libs/helpers/DebugHelper.php';
 //require '../app/controllers/PostNew.php';
 
 spl_autoload_register(function ($class) {
-    DebugHelper::debug($class);
+//    DebugHelper::debug($class);
     $file = ROOT . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
 //    $file = APP . "/controllers/$class.php";
     if (is_file($file)) {
@@ -28,7 +28,8 @@ spl_autoload_register(function ($class) {
 });
 
 //Добавляемые маршруты
-Router::add('^articles/?(?P<action>[a-z-]+)?$', ['controller' => 'Post']);
+Router::add('^page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)?$', ['controller' => 'page']);
+Router::add('^page/(?P<alias>[a-z-]+)?$', ['controller' => 'page', 'action' => 'view']);
 //Router::add('^articles/?(?P<action>[a-z-]+)?$');
 
 // Общие маршруты

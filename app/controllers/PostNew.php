@@ -1,10 +1,15 @@
 <?php
+
 namespace app\controllers;
+
+use vendor\core\base\Controller;
+use vendor\libs\helpers\DebugHelper;
+
 
 /**
  * Created by Nikolay Tuzov
  */
-class PostNew
+class PostNew extends Controller
 {
     public function before()
     {
@@ -13,16 +18,19 @@ class PostNew
 
     public function actionIndex()
     {
-        echo 'Post New - index!';
+        DebugHelper::debug($this->route);
+
+//        echo 'Post New - index!';
     }
 
     public function actionTest()
     {
-        echo 'Post New - test!';
+        var_dump($_GET['page']);
+//        echo 'Post New - test!';
     }
 
     public function actionTestNew()
     {
-        echo 'Post New - test new!';
+//        echo 'Post New - test new!';
     }
 }

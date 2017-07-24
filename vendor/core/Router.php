@@ -2,6 +2,7 @@
 
 namespace vendor\core;
 
+use vendor\libs\helpers\DebugHelper;
 use vendor\libs\helpers\UrlHelper;
 
 
@@ -82,11 +83,14 @@ class Router
      */
     public static function dispatch($url)
     {
+        $url = self::removeQueryString($url);
+
         if (self::matchRoute($url)) {
             $controller = 'app\controllers\\' . UrlHelper::dashesToCamelCase(self::$route['controller']);
+//            DebugHelper::debug(self::$route);
 
             if (class_exists($controller)) {
-                $controllerObject = new $controller;
+                $controllerObject = new $controller(self::$route);
                 $action = 'action' . UrlHelper::dashesToCamelCase(self::$route['action']);
                 if (method_exists($controllerObject, $action)) {
                     $controllerObject->$action();
@@ -100,5 +104,25 @@ class Router
             http_response_code(404);
             include 'error.php';
         }
+    }
+
+    /**
+     * Отсекает явные GET-парамтеры
+     * Пример: /p1/p2/?var3=p3&var4=p4 => /p1/p2
+     *
+     * @param $url
+     * @return mixed
+     */
+    public static function removeQueryString($url)
+    {
+        if ($url) {
+            $params = explode('&', $url, 2);
+            if (!strpos($params[0], '=')) {
+                return rtrim($params[0], '/');
+            }
+        }
+
+        return '';
+
     }
 }
