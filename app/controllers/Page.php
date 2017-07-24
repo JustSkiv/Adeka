@@ -6,7 +6,7 @@
 namespace app\controllers;
 
 
-class Page
+class Page extends AppController
 {
     public static function actionView()
     {

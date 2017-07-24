@@ -2,7 +2,6 @@
 
 namespace vendor\core;
 
-use vendor\libs\helpers\DebugHelper;
 use vendor\libs\helpers\UrlHelper;
 
 
@@ -25,7 +24,6 @@ class Router
 
     /**
      * Добавление маршрута в список маршрутов
-     *
      * @param string $rule
      * @param array $route
      */
@@ -36,7 +34,6 @@ class Router
 
     /**
      * Получение таблицы маршрутов
-     *
      * @return array
      */
     public static function getRoutes()
@@ -46,7 +43,6 @@ class Router
 
     /**
      * Получение текущего маршрута
-     *
      * @return array
      */
     public static function getRoute()
@@ -56,7 +52,6 @@ class Router
 
     /**
      * Сопоставление URL маршрутом из списка маршрутов
-     *
      * @param string $url
      * @return bool
      */
@@ -78,7 +73,6 @@ class Router
 
     /**
      * Перенаправление URL на соответствующий маршрут
-     *
      * @param $url
      */
     public static function dispatch($url)
@@ -87,18 +81,18 @@ class Router
 
         if (self::matchRoute($url)) {
             $controller = 'app\controllers\\' . UrlHelper::dashesToCamelCase(self::$route['controller']);
-//            DebugHelper::debug(self::$route);
 
             if (class_exists($controller)) {
                 $controllerObject = new $controller(self::$route);
                 $action = 'action' . UrlHelper::dashesToCamelCase(self::$route['action']);
                 if (method_exists($controllerObject, $action)) {
                     $controllerObject->$action();
+                    $controllerObject->renderView();
                 } else {
                     echo "Action <strong>$action</strong> does not exist!";
                 }
             } else {
-                echo "Controller <strong>$controller</strong> does not exist!";
+                echo "BaseController <strong>$controller</strong> does not exist!";
             }
         } else {
             http_response_code(404);

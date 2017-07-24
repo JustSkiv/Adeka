@@ -1,14 +1,18 @@
 <?php
+
 namespace app\controllers;
 
 /**
  * Created by Nikolay Tuzov
  */
-class Main
+class Main extends AppController
 {
+    public $layout = 'main';
+
     public function actionIndex()
     {
-        echo 'Main - index!';
+//        $this->layout = 'main';
+//        $this->view = 'test';
     }
 
 }

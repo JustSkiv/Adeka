@@ -11,17 +11,12 @@ define('WWW', __DIR__);
 define('CORE', dirname(__DIR__) . '/vendor/core');
 define('ROOT', dirname(__DIR__));
 define('APP', dirname(__DIR__) . '/app');
+define('LAYOUT', 'default');
 
-//require '../vendor/core/Router.php';
 require '../vendor/libs/helpers/DebugHelper.php';
-//require '../app/controllers/Main.php';
-//require '../app/controllers/Post.php';
-//require '../app/controllers/PostNew.php';
 
 spl_autoload_register(function ($class) {
-//    DebugHelper::debug($class);
     $file = ROOT . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-//    $file = APP . "/controllers/$class.php";
     if (is_file($file)) {
         require_once $file;
     }
@@ -33,9 +28,7 @@ Router::add('^page/(?P<alias>[a-z-]+)?$', ['controller' => 'page', 'action' => '
 //Router::add('^articles/?(?P<action>[a-z-]+)?$');
 
 // Общие маршруты
-Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
+Router::add('^$', ['controller' => 'main', 'action' => 'index']);
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
-
-//DebugHelper::debug(Router::getRoutes());
 
 Router::dispatch($query);

@@ -2,6 +2,16 @@
 /**
  * created by: Nikolay Tuzov
  */
+
+/** @var string $name
+ * @var string $test
+ * @var array $cars
+ */
+
 ?>
-<h1>Test!</h1>
-asd
+<h2>Test!</h2>
+asd<br/>
+Name: <?= $name ?> <br/>
+Test: <?= $test ?> <br/>
+<?php \vendor\libs\helpers\DebugHelper::debug($cars) ?>
+<code>www</code>
