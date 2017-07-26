@@ -5,7 +5,7 @@ namespace app\controllers;
 /**
  * Created by Nikolay Tuzov
  */
-class PostNew extends AppController
+class PostNewController  extends AppController
 {
     public $layout = 'main';
 

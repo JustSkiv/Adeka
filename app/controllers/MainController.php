@@ -5,7 +5,7 @@ namespace app\controllers;
 /**
  * Created by Nikolay Tuzov
  */
-class Main extends AppController
+class MainController extends AppController
 {
     public $layout = 'main';
 

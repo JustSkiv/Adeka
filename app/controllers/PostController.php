@@ -4,7 +4,7 @@ namespace app\controllers;
 /**
  * Created by Nikolay Tuzov
  */
-class Post extends AppController
+class PostController extends AppController
 {
 
     public function actionIndex()
