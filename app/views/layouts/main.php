@@ -27,10 +27,15 @@
 <body>
 <h1>Main Layout</h1>
 
-<?= $content ?>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <?php foreach ($menu as $item): ?>
+            <li><a href="category/<?= $item->id ?>"><?= $item->title ?></a></li>
+        <?php endforeach; ?>
+    </ul>
 
-<?php \vendor\libs\helpers\DebugHelper::debug(\vendor\core\Db::$countSql); ?>
-<?php \vendor\libs\helpers\DebugHelper::debug(\vendor\core\Db::$queries); ?>
+    <?= $content ?>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>

@@ -15,16 +15,12 @@ class MainController extends AppController
     public function actionIndex()
     {
         $model = new Main();
+        $windows = \R::findAll('window');
 
-//        $windows = $model->findAll();
-//        $windowTest = $model->findOne(16);
-//        $data = $model->findBySql("SELECT * FROM {$model->table} ORDER BY id ASC ");
-        $data = $model->findLike('2', 'title');
-        DebugHelper::debug($data);
-
-        $this->setData([
-            'title' => 'Main page title',
-        ]);
+        $menu = $this->menu;
+        $this->setData(
+            compact('windows', 'menu')
+        );
     }
 
 }
