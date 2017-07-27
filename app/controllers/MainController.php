@@ -24,8 +24,6 @@ class MainController extends AppController
 
         $this->setData([
             'title' => 'Main page title',
-            'windows' => $windows,
-//            'windowTest' => $windowTest
         ]);
     }
 
