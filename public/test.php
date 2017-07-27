@@ -3,18 +3,18 @@
  * Created by Nikolay Tuzov
  */
 
-require 'rb.php';
+require '../vendor/libs/rb.php';
 $db = require '../config/config_db.php';
 R::setup($db['dsn'], $db['user'], $db['pass']);
-R::freeze(true);
-R::fancyDebug(TRUE);
+//R::freeze(true);
+//R::fancyDebug(TRUE);
 
 //var_dump(R::testConnection());
 
 //Create
 //$category = R::dispense('category');
-//$category->title = 'Категория sadadsads';
-//$id = R::store($category);
+//$category->title = 'Категория new';
+//R::store($category);
 
 //Read and Update
 //$category = R::load('category',3);

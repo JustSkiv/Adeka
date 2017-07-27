@@ -15,6 +15,10 @@ class Db
     public static $countSql = 0;
     public static $queries = [];
 
+    /**
+     * Реализуем синглтон, поэтому конструктор protected
+     * Db constructor.
+     */
     protected function __construct()
     {
         $db = require ROOT . '/config/config_db.php';
@@ -27,6 +31,7 @@ class Db
 //        R::fancyDebug(TRUE);
 
 
+// Код, который использовался до подключения RedBean
 //        $options = [
 //            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
 //            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
@@ -34,6 +39,10 @@ class Db
 //        $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'], $options);
     }
 
+    /**
+     * Получение ссылки на подключение к БД
+     * @return Db
+     */
     public static function instance()
     {
         if (self::$instance === null) {
@@ -42,6 +51,7 @@ class Db
         return self::$instance;
     }
 
+    // Код, который использовался до подключения RedBean
 //    /**
 //     * Выполнение указанного SQL-запроса
 //     * @param $sql

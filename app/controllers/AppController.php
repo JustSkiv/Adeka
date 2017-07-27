@@ -11,7 +11,8 @@ use vendor\core\base\BaseController;
 
 class AppController extends BaseController
 {
-    protected $menu;
+    public $menu;
+    public $meta = [];
 
     /**
      * AppController constructor.
@@ -22,5 +23,11 @@ class AppController extends BaseController
 
         new Main();
         $this->menu = \R::findAll('category');
+    }
+
+    public function setMeta(array $meta)
+    {
+        $this->meta['keywords'] = $meta['keywords'] ?: '';
+        $this->meta['description'] = $meta['description'] ?: '';
     }
 }

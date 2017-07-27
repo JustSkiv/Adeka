@@ -40,18 +40,21 @@ abstract class BaseController
     {
         $this->route = $route;
         $this->view = $this->route['action'];
-
-//        include APP . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR .
-//            $this->route['controller'] . DIRECTORY_SEPARATOR .
-//            $this->route['action'] . ".php";
     }
 
+    /**
+     * Генерация представления
+     */
     public function renderView()
     {
         $viewObject = new View($this->route, $this->view, $this->layout);
         $viewObject->render($this->data);
     }
 
+    /**
+     * Передача переменных в представление
+     * @param $data
+     */
     public function setData($data)
     {
         $this->data = $data;

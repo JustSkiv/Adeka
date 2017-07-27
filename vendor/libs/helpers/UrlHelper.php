@@ -2,6 +2,8 @@
 namespace vendor\libs\helpers;
 /**
  * Created by Nikolay Tuzov
+ *
+ * Класс для работы с URL
  */
 class UrlHelper
 {

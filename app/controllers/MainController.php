@@ -10,17 +10,26 @@ use vendor\libs\helpers\DebugHelper;
  */
 class MainController extends AppController
 {
-    public $layout = 'main';
-
     public function actionIndex()
     {
         $model = new Main();
         $windows = \R::findAll('window');
 
         $menu = $this->menu;
+        $this->setMeta([
+            'keywords' => 'Meta main keywords',
+            'description' => 'Meta main description'
+        ]);
+        $meta = $this->meta;
+
         $this->setData(
-            compact('windows', 'menu')
+            compact('windows', 'menu', 'meta')
         );
+    }
+
+    public function actionTest()
+    {
+
     }
 
 }

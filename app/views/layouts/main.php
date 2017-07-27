@@ -16,6 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= isset($pageTitle) ? $pageTitle : 'Main title' ?></title>
 
+    <?php if (isset($meta['keywords'])): ?>
+        <meta name="keywords" content="<?= $meta['keywords'] ?>">
+    <?php endif; ?>
+    <?php if (isset($meta['description'])): ?>
+        <meta name="description" content="<?= $meta['description'] ?>">
+    <?php endif; ?>
+
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
 
@@ -28,11 +35,13 @@
 <h1>Main Layout</h1>
 
 <div class="container">
-    <ul class="nav nav-tabs">
-        <?php foreach ($menu as $item): ?>
-            <li><a href="category/<?= $item->id ?>"><?= $item->title ?></a></li>
-        <?php endforeach; ?>
-    </ul>
+    <?php if (!empty($menu)): ?>
+        <ul class="nav nav-tabs">
+            <?php foreach ($menu as $item): ?>
+                <li><a href="category/<?= $item->id ?>"><?= $item->title ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 
     <?= $content ?>
 </div>
