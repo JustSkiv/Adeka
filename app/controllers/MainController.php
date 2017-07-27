@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Main;
+use vendor\libs\helpers\DebugHelper;
+
 /**
  * Created by Nikolay Tuzov
  */
@@ -11,8 +14,19 @@ class MainController extends AppController
 
     public function actionIndex()
     {
-//        $this->layout = 'main';
-//        $this->view = 'test';
+        $model = new Main();
+
+//        $windows = $model->findAll();
+//        $windowTest = $model->findOne(16);
+//        $data = $model->findBySql("SELECT * FROM {$model->table} ORDER BY id ASC ");
+        $data = $model->findLike('2', 'title');
+        DebugHelper::debug($data);
+
+        $this->setData([
+            'title' => 'Main page title',
+            'windows' => $windows,
+//            'windowTest' => $windowTest
+        ]);
     }
 
 }

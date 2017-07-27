@@ -25,9 +25,12 @@
     <![endif]-->
 </head>
 <body>
-<h1>Hello, world! Main</h1>
+<h1>Main Layout</h1>
 
 <?= $content ?>
+
+<?php \vendor\libs\helpers\DebugHelper::debug(\vendor\core\Db::$countSql); ?>
+<?php \vendor\libs\helpers\DebugHelper::debug(\vendor\core\Db::$queries); ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>

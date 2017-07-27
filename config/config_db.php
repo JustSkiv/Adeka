@@ -4,5 +4,7 @@
  */
 
 return [
-    'dsn' => 'mysql:host=loc'
+    'dsn' => 'mysql:host=localhost;dbname=sk;charset=utf8',
+    'user'=>'root',
+    'pass'=>'root'
 ];
