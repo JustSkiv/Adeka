@@ -13,7 +13,9 @@ class MainController extends AppController
     public function actionIndex()
     {
         $model = new Main();
-        $windows = \R::findAll('window');
+//        $windows = \R::findAll('window');
+
+        $windows = Main::findAll();
 
         $menu = $this->menu;
         $this->setMeta([

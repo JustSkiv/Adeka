@@ -7,5 +7,5 @@ use vendor\core\base\BaseModel;
  */
 class Main extends BaseModel
 {
-    public $table = 'window';
+    public static $table = 'window';
 }
