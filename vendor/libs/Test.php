@@ -3,7 +3,7 @@
  * Created by Nikolay Tuzov
  */
 
-namespace RedBeanPHP;
+namespace vendor\libs;
 
 
 class Test

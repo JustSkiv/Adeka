@@ -1,21 +1,10 @@
 <?php
 /**
- * Created by Nikolay Tuzov
+ * created by: Nikolay Tuzov
  */
 
-$config = [
-    'components' => [
-        'cache' => 'classes\Cache',
-        'test' => 'classes\Test',
-    ]
-];
+namespace vendor\core;
 
-spl_autoload_register(function ($class) {
-    $file = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-    if (is_file($file)) {
-        require_once $file;
-    }
-});
 
 class Registry
 {
@@ -25,8 +14,7 @@ class Registry
 
     protected function __construct()
     {
-        global $config;
-
+        $config = require_once ROOT . '/config/config.php';
         foreach ($config['components'] as $name => $component) {
             self::$objects[$name] = new $component;
         }
@@ -66,10 +54,3 @@ class Registry
         echo '</pre>';
     }
 }
-
-$app = Registry::instance();
-$app->getList();
-$app->test->go();
-$app->test2 = 'classes\Test2';
-$app->getList();
-$app->test2->hello();
