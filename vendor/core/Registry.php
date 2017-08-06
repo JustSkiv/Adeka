@@ -8,9 +8,9 @@ namespace vendor\core;
 
 class Registry
 {
-    public static $objects = [];
+    use TSingletone;
 
-    protected static $instance;
+    public static $objects = [];
 
     protected function __construct()
     {
@@ -19,18 +19,6 @@ class Registry
             self::$objects[$name] = new $component;
         }
 
-    }
-
-    /**
-     * Получение ссылки на подключение к БД
-     * @return Registry
-     */
-    public static function instance()
-    {
-        if (self::$instance === null) {
-            self::$instance = new self;
-        }
-        return self::$instance;
     }
 
     public function __get($name)
