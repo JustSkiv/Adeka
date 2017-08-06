@@ -5,6 +5,7 @@
 ?>
 
 <div class="container">
+    <button id="send" class="btn btn-default">Кнопка</button>
     <?php foreach ($windows as $window): ?>
 
         <div class="panel panel-default">
@@ -15,3 +16,22 @@
         </div>
     <?php endforeach; ?>
 </div>
+
+<script src="/js/test.js"></script>
+<script>
+    $(function () {
+        $('#send').click(function () {
+            $.ajax({
+                url: '/main/test',
+                type: 'post',
+                data: {'id': 16},
+                success: function (res) {
+                    console.log(res);
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            });
+        });
+    });
+</script>

@@ -25,6 +25,14 @@ class View
      */
     public $layout;
 
+    public $scripts = [];
+
+    public static $meta = [
+        'title' => '',
+        'keywords' => '',
+        'description' => ''
+    ];
+
     /**
      * View constructor.
      * @param array $route
@@ -58,6 +66,9 @@ class View
         if ($this->layout !== false) {
             $fileLayout = APP . "/views/layouts/{$this->layout}.php";
             if (is_file($fileLayout)) {
+                $content = $this->cutScripts($content);
+
+//                DebugHelper::debug($this->scripts);
                 require $fileLayout;
             } else {
                 echo "<p>Layout <strong>$fileLayout</strong> not found </p>";
@@ -65,5 +76,34 @@ class View
         }
     }
 
+    protected function cutScripts($content)
+    {
+        $pattern = "#<script.*?>.*?</script>#si";
+        preg_match_all($pattern, $content, $scripts);
+
+
+        if (!empty($scripts)) {
+            $this->scripts = $scripts[0];
+            $content = preg_replace($pattern, '', $content);
+        }
+
+        return $content;
+    }
+
+    public static function getMeta()
+    {
+        $meta = "<title>" . self::$meta['title'] . "</title>\n";
+        $meta .= "<meta name='description' content='" . self::$meta['description'] . "'>\n";
+        $meta .= "<meta name='keywords' content='" . self::$meta['keywords'] . "'>\n";
+
+        return $meta;
+    }
+
+    public static function setMeta(array $meta)
+    {
+        self::$meta['title'] = $meta['title'] ?: '';
+        self::$meta['keywords'] = $meta['keywords'] ?: '';
+        self::$meta['description'] = $meta['description'] ?: '';
+    }
 
 }

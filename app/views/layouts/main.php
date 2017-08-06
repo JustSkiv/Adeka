@@ -14,14 +14,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= isset($pageTitle) ? $pageTitle : 'Main title' ?></title>
 
-    <?php if (isset($meta['keywords'])): ?>
-        <meta name="keywords" content="<?= $meta['keywords'] ?>">
-    <?php endif; ?>
-    <?php if (isset($meta['description'])): ?>
-        <meta name="description" content="<?= $meta['description'] ?>">
-    <?php endif; ?>
+    <?= \vendor\core\base\View::getMeta(); ?>
 
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
@@ -48,5 +42,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<?php foreach ($this->scripts as $script): ?>
+    <?= $script . "\n"; ?>
+<?php endforeach; ?>
+
 </body>
 </html>
