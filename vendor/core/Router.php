@@ -89,14 +89,17 @@ class Router
                     $controllerObject->$action();
                     $controllerObject->renderView();
                 } else {
-                    echo "Action <strong>$action</strong> does not exist!";
+//                    echo "Action <strong>$action</strong> does not exist!";
+                    throw new \Exception("Action $action does not exist", 404);
                 }
             } else {
-                echo "BaseController <strong>$controller</strong> does not exist!";
+//                echo "BaseController <strong>$controller</strong> does not exist!";
+                throw new \Exception("Controller $controller does not exist", 404);
             }
         } else {
-            http_response_code(404);
-            include 'error.php';
+//            http_response_code(404);
+//            include 'error.php';
+            throw new \Exception("Page $url does not exist", 404);
         }
     }
 

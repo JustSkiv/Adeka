@@ -14,7 +14,7 @@ class MainController extends AppController
     {
 //        \R::fancyDebug(true);
 //        App::$app->getList();
-        $model = new Main();
+        $model = new Main();asd();
 
 
         $windows = Main::findAll();

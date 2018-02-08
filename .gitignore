@@ -1,2 +1,3 @@
 .idea/*
-temp/cache/*
+temp/*
+config/config_db.php

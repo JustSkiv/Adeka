@@ -14,6 +14,7 @@ define('LIBS', dirname(__DIR__) . '/vendor/libs');
 define('APP', dirname(__DIR__) . '/app');
 define('CACHE', dirname(__DIR__) . '/temp/cache');
 define('LAYOUT', 'main');
+define("DEBUG", 1);
 
 require '../vendor/libs/helpers/DebugHelper.php';
 
