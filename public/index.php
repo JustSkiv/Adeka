@@ -27,13 +27,17 @@ spl_autoload_register(function ($class) {
 
 new \vendor\core\App();
 
-//Добавляемые маршруты
+// Custom routes
 Router::add('^page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)?$', ['controller' => 'page']);
 Router::add('^page/(?P<alias>[a-z-]+)?$', ['controller' => 'page', 'action' => 'view']);
 //Router::add('^articles/?(?P<action>[a-z-]+)?$');
 
-// Общие маршруты
+// General routes
+Router::add('^admin$', ['controller' => 'main', 'action' => 'index', 'prefix' => 'admin']);
+Router::add('^admin/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'admin']);
+
 Router::add('^$', ['controller' => 'main', 'action' => 'index']);
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
+
 
 Router::dispatch($query);

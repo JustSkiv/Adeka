@@ -62,7 +62,17 @@ class Router
                 foreach ($parameters as $key => $value) {
                     if (is_string($key)) $route[$key] = $value;
                 }
-                if (!isset($route['action'])) $route['action'] = 'index';
+                if (!isset($route['action'])) {
+                    $route['action'] = 'index';
+                }
+
+                if (!isset($route['prefix'])) {
+                    $route['prefix'] = '';
+                }
+//                else {
+//                    $route['prefix'] .= '\\';
+//                }
+
                 self::$route = $route;
                 return true;
             }
@@ -80,7 +90,11 @@ class Router
         $url = self::removeQueryString($url);
 
         if (self::matchRoute($url)) {
-            $controller = 'app\controllers\\' . UrlHelper::dashesToCamelCase(self::$route['controller']) . 'Controller';
+            if ($prefix = self::$route['prefix']) {
+                $prefix .= '\\';
+            }
+            $controller = 'app\controllers\\' . $prefix .
+                UrlHelper::dashesToCamelCase(self::$route['controller']) . 'Controller';
 
             if (class_exists($controller)) {
                 $controllerObject = new $controller(self::$route);
@@ -89,16 +103,12 @@ class Router
                     $controllerObject->$action();
                     $controllerObject->renderView();
                 } else {
-//                    echo "Action <strong>$action</strong> does not exist!";
                     throw new \Exception("Action $action does not exist", 404);
                 }
             } else {
-//                echo "BaseController <strong>$controller</strong> does not exist!";
                 throw new \Exception("Controller $controller does not exist", 404);
             }
         } else {
-//            http_response_code(404);
-//            include 'error.php';
             throw new \Exception("Page $url does not exist", 404);
         }
     }

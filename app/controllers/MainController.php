@@ -14,9 +14,10 @@ class MainController extends AppController
     {
 //        \R::fancyDebug(true);
 //        App::$app->getList();
-        $model = new Main();asd();
-
-
+        $model = new Main();
+//        asd();
+//        echo $asd;
+//trigger_error("E_USER_ERROR!", E_USER_ERROR);
         $windows = Main::findAll();
 
 //        $windows = App::$app->cache->get('windows');

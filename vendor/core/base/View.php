@@ -54,12 +54,17 @@ class View
     public function render($data)
     {
         if (is_array($data)) extract($data);
-        $fileView = APP . "/views/{$this->route['controller']}/{$this->view}.php";
+
+        if ($prefix = $this->route['prefix']) {
+            $prefix .= DIRECTORY_SEPARATOR;
+        }
+        $fileView = APP . "/views/{$prefix}{$this->route['controller']}/{$this->view}.php";
         ob_start();
         if (is_file($fileView)) {
             require $fileView;
         } else {
-            echo "<p>View <strong>$fileView</strong> not found </p>";
+//            echo "<p>View <strong>$fileView</strong> not found </p>";
+            throw new \Exception("View $fileView not found");
         }
         $content = ob_get_clean();
 
@@ -71,7 +76,7 @@ class View
 //                DebugHelper::debug($this->scripts);
                 require $fileLayout;
             } else {
-                echo "<p>Layout <strong>$fileLayout</strong> not found </p>";
+                throw new \Exception("Layout $fileView not found");
             }
         }
     }
@@ -102,8 +107,8 @@ class View
     public static function setMeta(array $meta)
     {
         self::$meta['title'] = $meta['title'] ?: '';
-        self::$meta['keywords'] = $meta['keywords'] ?: '';
-        self::$meta['description'] = $meta['description'] ?: '';
+        self::$meta['keywords'] = $meta['keywords'] ?? '';
+        self::$meta['description'] = $meta['description'] ?? '';
     }
 
 }
