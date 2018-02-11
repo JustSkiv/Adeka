@@ -1,7 +1,7 @@
 <?php
 namespace app\models;
 
-use vendor\core\base\BaseModel;
+use sk\core\base\BaseModel;
 /**
  * created by: Nikolay Tuzov
  */

@@ -1,8 +1,8 @@
 <?php
 
-namespace vendor\core;
+namespace sk\core;
 
-use vendor\libs\helpers\UrlHelper;
+use sk\libs\helpers\UrlHelper;
 
 
 /**

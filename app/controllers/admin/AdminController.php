@@ -7,7 +7,7 @@ namespace app\controllers\admin;
 
 
 use app\models\Main;
-use vendor\core\base\BaseController;
+use sk\core\base\BaseController;
 
 class AdminController extends BaseController
 {

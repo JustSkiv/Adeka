@@ -1,0 +1,18 @@
+{
+    "name": "skiv/sk",
+    "authors": [
+        {
+            "name": "Nikolay Tuzov",
+            "email": "tuzov.n@gmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^1.23"
+    },
+    "autoload": {
+        "psr-4": {
+            "sk\\": "vendor/sk",
+            "app\\": "app"
+        }
+    }
+}

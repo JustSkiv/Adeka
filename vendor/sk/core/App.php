@@ -3,7 +3,7 @@
  * created by: Nikolay Tuzov
  */
 
-namespace vendor\core;
+namespace sk\core;
 
 
 class App

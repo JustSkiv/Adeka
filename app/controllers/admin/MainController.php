@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers\admin;
 
-use vendor\core\base\View;
+use sk\core\base\View;
 
 /**
  * Created by Nikolay Tuzov

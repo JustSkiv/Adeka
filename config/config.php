@@ -5,7 +5,7 @@
 
 return [
     'components' => [
-        'cache' => 'vendor\libs\Cache',
-        'test' => 'vendor\libs\Test',
+        'cache' => 'sk\libs\Cache',
+        'test' => 'sk\libs\Test',
     ]
 ];

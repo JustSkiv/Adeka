@@ -3,7 +3,7 @@
  * created by: Nikolay Tuzov
  */
 
-namespace vendor\core\base;
+namespace sk\core\base;
 
 
 abstract class BaseController

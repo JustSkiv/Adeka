@@ -1,5 +1,5 @@
 <?php
-namespace vendor\libs\helpers;
+namespace sk\libs\helpers;
 /**
  * Created by Nikolay Tuzov
  *

@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\models\Main;
-use vendor\core\base\View;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use sk\core\base\View;
 
 /**
  * Created by Nikolay Tuzov
@@ -26,6 +28,14 @@ class MainController extends AppController
 //            App::$app->cache->set('windows', $windows, 3600 * 24);
 //        }
 
+
+        // create a log channel
+        $log = new Logger('test');
+        $log->pushHandler(new StreamHandler(LOG . '/your.log', Logger::WARNING));
+
+        // add records to the log
+        $log->warning('Foo');
+        $log->error('Bar');
 
         $menu = $this->menu;
 

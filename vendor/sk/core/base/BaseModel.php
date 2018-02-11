@@ -3,9 +3,9 @@
  * created by: Nikolay Tuzov
  */
 
-namespace vendor\core\base;
+namespace sk\core\base;
 
-use vendor\core\Db;
+use sk\core\Db;
 
 abstract class BaseModel
 {

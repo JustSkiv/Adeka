@@ -1,3 +1,6 @@
 .idea/*
 temp/*
 config/config_db.php
+
+vendor/*
+!vendor/sk

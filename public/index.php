@@ -3,29 +3,31 @@
  * Created by Nikolay Tuzov
  */
 
-use vendor\core\Router;
+use sk\core\Router;
 
 $query = rtrim($_SERVER['QUERY_STRING'], '/');
 
 define('WWW', __DIR__);
-define('CORE', dirname(__DIR__) . '/vendor/core');
+define('CORE', dirname(__DIR__) . '/vendor/sk/core');
 define('ROOT', dirname(__DIR__));
-define('LIBS', dirname(__DIR__) . '/vendor/libs');
+define('LIBS', dirname(__DIR__) . '/vendor/sk/libs');
 define('APP', dirname(__DIR__) . '/app');
 define('CACHE', dirname(__DIR__) . '/temp/cache');
+define('LOG', dirname(__DIR__) . '/temp/log');
 define('LAYOUT', 'main');
 define("DEBUG", 1);
 
-require '../vendor/libs/helpers/DebugHelper.php';
+require '../vendor/sk/libs/helpers/DebugHelper.php';
 
-spl_autoload_register(function ($class) {
+/*spl_autoload_register(function ($class) {
     $file = ROOT . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
     if (is_file($file)) {
         require_once $file;
     }
-});
+});*/
+require_once '../vendor/autoload.php';
 
-new \vendor\core\App();
+new \sk\core\App();
 
 // Custom routes
 Router::add('^page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)?$', ['controller' => 'page']);

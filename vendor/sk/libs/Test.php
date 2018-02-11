@@ -3,7 +3,7 @@
  * Created by Nikolay Tuzov
  */
 
-namespace vendor\libs;
+namespace sk\libs;
 
 
 class Test
