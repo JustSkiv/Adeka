@@ -13,5 +13,5 @@
 asd<br/>
 Name: <?= $name ?> <br/>
 Test: <?= $test ?> <br/>
-<?php \vendor\libs\helpers\DebugHelper::debug($cars) ?>
+<?php var_dump($cars) ?>
 <code>www</code>

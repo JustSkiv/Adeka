@@ -55,7 +55,7 @@ abstract class BaseController
      * Передача переменных в представление
      * @param $data
      */
-    public function setData($data)
+    public function setData(array $data)
     {
         $this->data = $data;
     }
@@ -69,6 +69,20 @@ abstract class BaseController
     {
         extract($data);
         require_once APP . "/views/{$this->route['controller']}/{$view}.php";
+    }
+
+    public function redirect($url = false)
+    {
+        $redirect = '';
+
+        if ($url) {
+            $redirect = $url;
+        } else {
+            $redirect = $_SERVER['HTTP_REFERER'] ?? '/';
+
+        }
+
+        return header($redirect);
     }
 
 }

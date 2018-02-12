@@ -10,6 +10,7 @@ use Valitron\Validator;
 
 abstract class BaseModel
 {
+    const LOAD_OPTION_HTMLSPECIALCHARS = 1;
 //    protected $pdo;
     protected static $table;
     protected $pk = 'id';
@@ -26,6 +27,11 @@ abstract class BaseModel
         $this->db = Db::instance();
     }
 
+    public function __get($field)
+    {
+        return $this->attributes[$field];
+    }
+
     /**
      * find all records in model's table
      * @return array
@@ -40,14 +46,38 @@ abstract class BaseModel
      * Load data to model
      *
      * @param $data
+     * @param $options
      */
-    public function load($data)
+    public function load($data, $options)
     {
+        $doHtmlspecialchars = false;
+        if (!isset($options['type'])) {
+            $doHtmlspecialchars = $options['type'] == self::LOAD_OPTION_HTMLSPECIALCHARS;
+        }
+
         foreach ($data as $name => $value) {
             if (isset($this->attributes[$name])) {
-                $this->attributes[$name] = $data[$name];
+                if($doHtmlspecialchars){
+                    $this->attributes[$name] = htmlspecialchars($data[$name]);
+                } else{
+                    $this->attributes[$name] = $data[$name];
+                }
             }
         }
+    }
+
+    /**
+     * save model to DB
+     * @return int|string
+     */
+    public function save()
+    {
+        $tbl = \R::dispense(static::$table);
+        foreach ($this->attributes as $name => $value) {
+            $tbl[$name] = $value;
+        }
+
+        return \R::store($tbl);
     }
 
     /**
@@ -60,21 +90,57 @@ abstract class BaseModel
     {
         $res = false;
 
+        // TODO: get from config
+        //Validator::lang('ru');
         $v = new Validator($data);
         $v->rules($this->rules);
 
         if ($v->validate()) {
             $res = true;
         } else {
-            $this->errors = $v->errors();
+            $this->errors = array_merge_recursive($this->errors, $v->errors());
         }
 
         return $res;
     }
 
+    /**
+     * @return array
+     */
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    /**
+     * returns formatted errors (html)
+     *
+     * @param bool $field
+     * @return string
+     */
+    public function showErrors($field = false)
+    {
+        if (empty($this->errors) || ($field && empty($this->errors[$field]))) {
+            return '';
+        }
+
+        $res = '<div class="alert alert-danger"><ul>';
+
+        if ($field) {
+            foreach ($this->errors[$field] as $error) {
+                $res .= "<li>$error</li>";
+            }
+        } else {
+            foreach ($this->errors as $field) {
+                foreach ($field as $error) {
+                    $res .= "<li>$error</li>";
+                }
+            }
+        }
+
+        $res .= '</ul></div>';
+
+        return $res;
     }
 
     //Этот код был написан до подключения RedBean

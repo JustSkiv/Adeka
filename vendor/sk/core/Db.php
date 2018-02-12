@@ -22,11 +22,10 @@ class Db
      */
     protected function __construct()
     {
-        $db = require ROOT . '/config/config_db.php';
+        $db = require_once ROOT . '/config/config_db.php';
 
         // Подключаем RedBean
         require LIBS . '/rb.php';
-        $db = require '../config/config_db.php';
         R::setup($db['dsn'], $db['user'], $db['pass']);
         R::freeze(true);
 //        R::fancyDebug(TRUE);

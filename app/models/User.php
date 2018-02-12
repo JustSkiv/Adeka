@@ -29,4 +29,47 @@ class User extends BaseModel
         'lengthMin' => [['password', 4]]
     ];
 
+    public function save()
+    {
+        $this->attributes['password'] = password_hash($this->attributes['password'], PASSWORD_DEFAULT);
+        $tbl = \R::dispense(static::$table);
+        foreach ($this->attributes as $name => $value) {
+            $tbl[$name] = $value;
+        }
+
+        return \R::store($tbl);
+    }
+
+    public function isUnique()
+    {
+        $res = true;
+
+        $user = \R::findOne('user', 'login = ? OR email = ? LIMIT 1',
+            [$this->attributes['login'], $this->attributes['email']]);
+
+        if ($user) {
+            $res = false;
+
+            if ($user->login = $this->attributes['login']) {
+                $this->errors['login'][] = 'This login already exists';
+            }
+
+            if ($user->email = $this->attributes['email']) {
+                $this->errors['email'][] = 'This email already exists';
+            }
+        }
+
+        return $res;
+    }
+
+    public function validate($data)
+    {
+        $res = parent::validate($data);
+
+        if ($res) {
+            $res = $this->isUnique();
+        }
+
+        return $res;
+    }
 }

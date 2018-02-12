@@ -14,22 +14,24 @@ class UserController extends BaseController
 {
     public function actionSignup()
     {
+        $errors = [];
+        $success = '';
         View::setMeta(['title' => 'Signup']);
 
+        $user = new User();
         if (!empty($_POST)) {
-            $user = new User();
             $data = $_POST;
-            $user->load($data);
+            $user->load($data, ['type' => User::LOAD_OPTION_HTMLSPECIALCHARS])  ;
 
-            if ($user->validate($data)) {
-                echo "Ok\n";
+            if ($user->validate($data) && $user->save()) {
+                $success = 'Signed up successfully!';
             } else {
-                var_dump($user->getErrors());
+                $errors = $user->getErrors();
             }
 
-            var_dump($user);
-            var_dump($_POST);
         }
+
+        $this->setData(['errors' => $errors, 'user' => $user, 'success' => $success]);
     }
 
     public function actionLogin()
