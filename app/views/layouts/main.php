@@ -85,7 +85,6 @@
 
 
 <h1>Main Layout</h1>
-
 <div class="container">
     <?php if (!empty($menu)): ?>
         <ul class="nav nav-tabs">

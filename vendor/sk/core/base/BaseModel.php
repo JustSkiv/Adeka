@@ -34,11 +34,22 @@ abstract class BaseModel
 
     /**
      * find all records in model's table
+     * TODO: must return instanses of BaseModel
+     *
      * @return array
      */
     public static function findAll()
     {
         return \R::findAll(static::$table);
+    }
+
+    /**
+     * find one record in model's table
+     * TODO: must return instanse of BaseModel
+     */
+    public static function findOne($filter, $params)
+    {
+        return \R::findOne(static::$table);
     }
 
 

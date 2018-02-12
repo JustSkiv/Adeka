@@ -82,7 +82,8 @@ abstract class BaseController
 
         }
 
-        return header($redirect);
+        header("Location: $redirect");
+        exit;
     }
 
 }

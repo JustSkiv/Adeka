@@ -72,4 +72,24 @@ class User extends BaseModel
 
         return $res;
     }
+
+    public function login($login, $password)
+    {
+        $res = false;
+        $user = self::findOne('login = ? LIMIT 1', $login);
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                foreach ($user as $k => $v) {
+
+                    //TODO: should be instanse of User
+                    $_SESSION['user'] = $user;
+                    unset($_SESSION['user']['password']);
+                }
+
+                $res = true;
+            }
+        }
+
+        return $res;
+    }
 }

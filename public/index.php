@@ -5,6 +5,8 @@
 
 use sk\core\Router;
 
+session_start();
+
 $query = rtrim($_SERVER['QUERY_STRING'], '/');
 
 define('WWW', __DIR__);
