@@ -1,5 +1,5 @@
 {
-    "name": "skiv/sk",
+    "name": "justskiv/adeka",
     "authors": [
         {
             "name": "Nikolay Tuzov",
@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "sk\\": "vendor/sk",
+            "adeka\\": "vendor/justskiv/adeka",
             "app\\": "app"
         }
     }
