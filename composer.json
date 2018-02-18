@@ -1,0 +1,10 @@
+{
+    "name": "skiv/sk-dev",
+    "authors": [
+        {
+            "name": "Nikolay Tuzov",
+            "email": "tuzov.n@gmail.com"
+        }
+    ],
+    "require": {}
+}
