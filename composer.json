@@ -1,10 +1,19 @@
 {
-    "name": "skiv/sk-dev",
+    "name": "skiv/sk",
     "authors": [
         {
             "name": "Nikolay Tuzov",
             "email": "tuzov.n@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "monolog/monolog": "^1.23",
+        "vlucas/valitron": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "sk\\": "vendor/sk",
+            "app\\": "app"
+        }
+    }
 }
