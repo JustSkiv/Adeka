@@ -1,31 +1,32 @@
 # SK-Framework v0.1
 
-## Описание
+## Description
 
-Данный проект представляет собой небольшой MVC-фреймворк, написанный в образовательных целях.
-
-На данный момент в проекте имеется несколько тестовых контроллеров, представлений и моделей. В скором времени я их уберу.
+This project is a little MVC-framework made for educational purposes
 
 
-## Краткая справка по структуре
+There are currently several test controllers, views, and models in the project. I will remove them in the future.
 
 
-```
-- public/index.php - основной скрипт, принимающий пользовательские запросы
+## A brief overview of the structure
 
-- vendor/core - ядро фреймворка
--- vendor/core/base - базовые контроллер, модель и представление
--- vendor/core/Db.php - подключение к БД
--- vendor/core/Router.php - маршрутизация
-
-- vendor/libs - подключаемые библиотеки
--- vendor/libs/helpers - классы со вспомогательными методами
-
-- app - приложение (контроллеры, модели, представления)
-
-- config - конфигурация приложения (настройка подключения к БД)
 
 ```
+- public/index.php - the main script that accepts requests
 
-## Обратная связь
-По всем вопросам обращаться сюда: tuzov.n@gmail.com
+- vendor/core - core of the framework
+-- vendor/core/base - base controller, moldel and view
+-- vendor/core/Db.php - connection to DB
+-- vendor/core/Router.php - router
+
+- vendor/libs - external libs
+-- vendor/libs/helpers - some classes with help methods
+
+- app - application (controllers, models, views)
+
+- config - configuration of the application (parameters of the DB connection)
+
+```
+
+## Feedback
+Email: tuzov.n@gmail.com
