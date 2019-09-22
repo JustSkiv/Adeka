@@ -28,5 +28,9 @@ There are currently several test controllers, views, and models in the project. 
 
 ```
 
+## Example project on SK-Framework
+
+- [Task Manager](https://github.com/JustSkiv/task-manager)
+
 ## Feedback
 Email: tuzov.n@gmail.com
